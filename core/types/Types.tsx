@@ -11,16 +11,22 @@ export enum Params {
 }
 
 export type RentalsResponse = {
-    data: Data[],
-    meta: any,
-    included: Included[],
+    data: Data[];
+    meta: Meta;
+    included: Included[];
 }
 
 type Data = {
     id: string;
     type: string;
-    // attributes: Attributes;
+    attributes: Attributes;
     relationships: Relationships;
+}
+
+type Meta = {
+    total: number;
+    start_position: number;
+    stop_position: number;
 }
 
 type Included = {
@@ -33,9 +39,9 @@ type IncludedAttributes = {
     url: string;
 }
 
-// type Attributes = {
-
-// }
+type Attributes = {
+    vehicle_title: string;
+}
 
 type Relationships = {
     primary_image: PrimaryImage;

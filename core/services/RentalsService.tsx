@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { FilterParams, Params, RentalsResponse } from '../types/Types';
+import { FilterParams, Params } from '../types/Types';
 import { API } from './API';
 
 // const resourceUrl = `rentals?filter[keywords]=trailer&page[limit]=8&page[offset]=8`;

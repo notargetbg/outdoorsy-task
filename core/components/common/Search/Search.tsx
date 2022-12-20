@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+
 import { Params, RentalsResponse } from '../../../types/Types';
 import { searchRentals } from '../../../services/RentalsService';
 
@@ -18,8 +19,8 @@ export default function Search({ setRecords }: Props) {
     };
 
     return (
-        <div className=''>
-            <input type='text' value={searchText} onChange={e => setSearchText(e.target.value)} />
+        <div>
+            <input type='text' value={searchText} onChange={e => setSearchText(e.target.value)} spellCheck='false' />
             <button onClick={search}>Search</button>
         </div>
     );
