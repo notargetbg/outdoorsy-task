@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { Params, RentalsResponse } from '../../../types/Types';
 import { searchRentals } from '../../../services/RentalsService';
-
+import styles from '../../../../styles/Search.module.css';
 interface Props {
     setRecords: Dispatch<SetStateAction<RentalsResponse | null>>;
 }
@@ -10,7 +10,9 @@ interface Props {
 export default function Search({ setRecords }: Props) {
     const [searchText, setSearchText] = useState('');
 
-    const search = (): void => {
+    const search = (e: React.KeyboardEvent): void => {
+        if (e.key !== 'Enter' || searchText.length < 2) return;
+
         searchRentals({
             [Params.Keywords]: searchText
         }).then(((results: RentalsResponse) => {
@@ -20,8 +22,12 @@ export default function Search({ setRecords }: Props) {
 
     return (
         <div>
-            <input type='text' value={searchText} onChange={e => setSearchText(e.target.value)} spellCheck='false' />
-            <button onClick={search}>Search</button>
+            <input  type='text'
+                    className={styles.search}
+                    value={searchText}
+                    onChange={e => setSearchText(e.target.value)}
+                    onKeyDown={search}
+                    spellCheck='false'/>
         </div>
     );
 }

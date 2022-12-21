@@ -1,0 +1,21 @@
+.wrapper {
+    max-width: 640px;
+    margin: var(--gap-size) auto;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-size);
+    margin: 40px 0;
+}
+
+.itemTitle {
+    font-size: var(--font-size);
+    font-weight: 500;
+    color: var(--text-color)
+}
+
+.itemImage {
+    border-radius: var(--border-radius);
+}
