@@ -19,3 +19,10 @@
 .itemImage {
     border-radius: var(--border-radius);
 }
+
+.total {
+    text-align: left !important;
+    display: block;
+    font-style: italic;
+    margin: calc(var(--gap-size) * -1) 0; /* makes gap-size negative */
+}

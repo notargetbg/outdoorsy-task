@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import { RentalsProvider } from '../core/contexts/RentalsContext';
 import RentalsSearch from '../core/components/containers/RentalsSearch/RentalsSearch';
 
 export default function Home() {
@@ -12,7 +13,9 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
     
-      <RentalsSearch />
+      <RentalsProvider>
+        <RentalsSearch />
+      </RentalsProvider>
     </>
   );
 }

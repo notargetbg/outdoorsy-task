@@ -1,8 +1,7 @@
 import { AxiosResponse } from 'axios';
-import { FilterParams, Params } from '../types/Types';
+import { FilterParams, Params, RentalsResponse } from '../types/Types';
 import { API } from './API';
 
-// const resourceUrl = `rentals?filter[keywords]=trailer&page[limit]=8&page[offset]=8`;
 const resourceName = 'rentals';
 
 export async function searchRentals(filter: FilterParams) {
@@ -14,7 +13,7 @@ export async function searchRentals(filter: FilterParams) {
         }        
     };
 
-    const rentals = await API.get(resourceName, requestConfig).then((res: AxiosResponse) => {
+    const rentals = await API.get(resourceName, requestConfig).then((res: AxiosResponse<RentalsResponse>) => {
         return res.data;
     }, (err => {
         console.log(err);

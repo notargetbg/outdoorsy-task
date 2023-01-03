@@ -9,14 +9,13 @@ export enum Params {
     Limit = 'page[limit]',
     Offset = 'page[offset]',
 }
-
-export type RentalsResponse = {
-    data: Data[];
+export interface RentalsResponse {
+    data: DataItem[];
     meta: Meta;
-    included: Included[];
+    included: IncludedItem[];
 }
 
-type Data = {
+export type DataItem = {
     id: string;
     type: string;
     attributes: Attributes;
@@ -29,7 +28,7 @@ type Meta = {
     stop_position: number;
 }
 
-type Included = {
+export type IncludedItem = {
     id: string;
     type: string;
     attributes: IncludedAttributes;
@@ -54,4 +53,9 @@ type PrimaryImage = {
 type PrimaryImageData = {
     id: string;
     type: string;
+}
+
+export enum SearchActionType {
+    ADDED,
+    NEW
 }

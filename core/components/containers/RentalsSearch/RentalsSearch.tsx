@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 
-import { RentalsResponse } from '../../../types/Types';
-import Search from '../../common/Search/Search';
-import List from '../../common/ItemList/ItemList';
-import styles from '../../../../styles/Home.module.css';
+import { Params, RentalsResponse, SearchActionType } from '../../../types/Types';
+import { useRentals } from '../../../contexts/RentalsContext';
+import SearchInput from '../../common/Search/SearchInput';
+import RentalsList from '../../common/List/RentalsList';
 import Text from '../../common/Text/Text';
+import styles from '../../../../styles/Home.module.css';
+import { searchRentals } from '../../../services/RentalsService';
 
 const defaultMessage = 'Type a keyword and press "Enter"';
 
 export default function RentalsSearch() {
-    const router = useRouter();
+    const rentals = useRentals();
 
-    console.log(router);
-    // todo extra: use router and url query to make request to rentals as well
+    const setRentals = async (searchText: string) => {
+        // if search term is the same as previous do not make the request
+        if (rentals.searchText === searchText && searchText !== '') {
+            return;
+        }
 
-    const [rentals, setRentals] = useState<RentalsResponse | null>(null);
+        // prepare params
+        const offset = rentals && rentals.searchText === searchText ? rentals.meta.stop_position : 0;
+        const records: RentalsResponse = await searchRentals({
+            [Params.Keywords]: searchText,
+            [Params.Offset]: offset
+        });
+
+        // save to context
+        rentals.dispatch?.({
+            type: SearchActionType.NEW,
+            records,
+            searchText
+        });
+    };
     
     return (
         <section className={styles.mainSection}>
-            <Search setRecords={setRentals} />
-            {rentals ? <List records={rentals} /> : <Text>{defaultMessage}</Text>}
+            <SearchInput onSearch={setRentals} />
+            {rentals.searchText ? <RentalsList /> : <Text>{defaultMessage}</Text>}
         </section>
     );
 }
