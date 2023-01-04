@@ -17,7 +17,7 @@ export function RentalsListItem(props: { rentalItem: DataItem, included: Include
     }
 
     return (
-        <div  className={styles.item}>
+        <div className={styles.item}>
             <Image className={styles.itemImage} alt={rentalItem.attributes.vehicle_title} src={getImgUrl(rentalItem.relationships.primary_image)} width={225} height={150} />
             <h3 className={styles.itemTitle}>
                 {rentalItem.attributes.vehicle_title}

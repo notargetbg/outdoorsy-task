@@ -22,7 +22,7 @@ export type DataItem = {
     relationships: Relationships;
 }
 
-type Meta = {
+export type Meta = {
     total: number;
     start_position: number;
     stop_position: number;
@@ -42,7 +42,7 @@ type Attributes = {
     vehicle_title: string;
 }
 
-type Relationships = {
+export type Relationships = {
     primary_image: PrimaryImage;
 }
 

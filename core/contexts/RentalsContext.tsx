@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { RentalsResponse, SearchActionType } from '../types/Types';
 
-interface RentalsState extends RentalsResponse {
+export interface RentalsState extends RentalsResponse {
   searchText: string;
   dispatch?: React.Dispatch<RentalsAction>;
 }
@@ -29,7 +29,7 @@ const initialState = {
   ...initialSearchText
 };
 
-const RentalsContext = createContext<RentalsState>(initialState);
+export const RentalsContext = createContext<RentalsState>(initialState);
 
 export function RentalsProvider({ children }: { children: React.ReactNode }) {
   const [rentals, dispatch] = useReducer(
