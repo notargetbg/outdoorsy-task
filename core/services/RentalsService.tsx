@@ -3,6 +3,7 @@ import { FilterParams, Params, RentalsResponse } from '../types/Types';
 import { API } from './API';
 
 const resourceName = 'rentals';
+const defaultPageLimit = 25;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function searchRentals(filter: FilterParams): Promise<RentalsResponse | any> {
@@ -10,7 +11,7 @@ export async function searchRentals(filter: FilterParams): Promise<RentalsRespon
     const requestConfig = {
         params: {
             [Params.Keywords]: filter[Params.Keywords],
-            [Params.Limit]: filter[Params.Limit] || 8,
+            [Params.Limit]: filter[Params.Limit] || defaultPageLimit,
             [Params.Offset]: filter[Params.Offset] || 0
         }        
     };
