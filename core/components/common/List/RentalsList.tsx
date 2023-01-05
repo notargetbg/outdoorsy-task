@@ -26,7 +26,7 @@ export default function RentalsList() {
         
         // save to context
         rentals.dispatch?.({
-            type: SearchActionType.ADDED,
+            type: SearchActionType.Added,
             records,
             searchText: rentals.searchText
         });

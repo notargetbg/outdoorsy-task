@@ -7,8 +7,8 @@ export interface RentalsState extends RentalsResponse {
 }
 
 type RentalsAction =
-  { type: SearchActionType.ADDED, records: RentalsResponse, searchText: string }
-  | { type: SearchActionType.NEW, records: RentalsResponse, searchText: string };
+  { type: SearchActionType.Added, records: RentalsResponse, searchText: string }
+  | { type: SearchActionType.New, records: RentalsResponse, searchText: string };
 
 const initialSearchText = {
   searchText: '',
@@ -54,7 +54,7 @@ export function useRentals() {
 
 function rentalsReducer(state: RentalsResponse, action: RentalsAction) {
   switch (action.type) {
-    case SearchActionType.ADDED: {
+    case SearchActionType.Added: {
       const data = action.records.data || [];
       const included = action.records.included || [];
 
@@ -65,7 +65,7 @@ function rentalsReducer(state: RentalsResponse, action: RentalsAction) {
         searchText: action.searchText
       };
     }
-    case SearchActionType.NEW: {
+    case SearchActionType.New: {
       return {
         ...state,
         ...action.records,

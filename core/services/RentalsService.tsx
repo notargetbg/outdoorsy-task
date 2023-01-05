@@ -4,7 +4,9 @@ import { API } from './API';
 
 const resourceName = 'rentals';
 
-export async function searchRentals(filter: FilterParams) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function searchRentals(filter: FilterParams): Promise<RentalsResponse | any> {
+    // prepare params
     const requestConfig = {
         params: {
             [Params.Keywords]: filter[Params.Keywords],
@@ -13,13 +15,15 @@ export async function searchRentals(filter: FilterParams) {
         }        
     };
 
-    const rentals = await API.get(resourceName, requestConfig).then((res: AxiosResponse<RentalsResponse>) => {
-        return res.data;
-    }, (err => {
-        console.log(err);
-
-        return err;
-    }));
-
-    return rentals;
+    try {
+        // make the request
+        const rentals: AxiosResponse<RentalsResponse> = await API.get(resourceName, requestConfig);
+        
+        // return the raw response data
+        return rentals.data;
+    } catch (error) {
+        console.log(error);
+    
+        return error;
+    }
 }

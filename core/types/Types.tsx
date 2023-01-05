@@ -11,8 +11,8 @@ export enum Params {
 }
 
 export enum SearchActionType {
-    ADDED,
-    NEW
+    Added,
+    New
 }
 
 export interface RentalsResponse {

@@ -22,7 +22,7 @@ const setNewRentals = (rentals: RentalsState) => async (searchText: string) => {
 
     // save to context
     rentals.dispatch?.({
-        type: SearchActionType.NEW,
+        type: SearchActionType.New,
         records,
         searchText
     });
