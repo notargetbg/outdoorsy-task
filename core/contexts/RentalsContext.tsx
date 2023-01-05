@@ -37,6 +37,7 @@ export function RentalsProvider({ children }: { children: React.ReactNode }) {
     initialState
   );
 
+  // set the provider value and add dispatch in order to use it easily across the components
   return (
     <RentalsContext.Provider value={{
       ...rentals,

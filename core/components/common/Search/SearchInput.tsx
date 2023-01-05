@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import styles from '../../../../styles/Search.module.css';
 
 interface Props {
@@ -14,7 +14,7 @@ export default function Search({ onSearch }: Props) {
         if (!inputRef.current) return;
     
         const searchText = inputRef.current.value;
-        if (e.key !== 'Enter' || searchText.length < 2) return;        
+        if (e.key !== 'Enter' || searchText.length < 2) return;
     
         onSearch(searchText);
     }, [onSearch]);

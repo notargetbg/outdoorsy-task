@@ -12,15 +12,19 @@ const allResultsMessage = 'Yay, you have seen it all!';
 
 export default function RentalsList() {
     const rentals = useRentals();
+    
+    // check if we have more results or if we have reached the end
     const hasMore = rentals.meta.stop_position < rentals.meta.total && rentals.meta.stop_position !== 0;
     const hasNoResults = rentals.meta.total === 0 && rentals.searchText;
 
     const setNextRentals = useCallback(async () => {
+        // call the API for additional results by providing correct offset
         const records: RentalsResponse = await searchRentals({
             [Params.Keywords]: rentals.searchText,
             [Params.Offset]: rentals.meta.stop_position
         });
         
+        // save to context
         rentals.dispatch?.({
             type: SearchActionType.ADDED,
             records,

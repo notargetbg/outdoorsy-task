@@ -9,6 +9,12 @@ export enum Params {
     Limit = 'page[limit]',
     Offset = 'page[offset]',
 }
+
+export enum SearchActionType {
+    ADDED,
+    NEW
+}
+
 export interface RentalsResponse {
     data: DataItem[];
     meta: Meta;
@@ -53,9 +59,4 @@ type PrimaryImage = {
 type PrimaryImageData = {
     id: string;
     type: string;
-}
-
-export enum SearchActionType {
-    ADDED,
-    NEW
 }

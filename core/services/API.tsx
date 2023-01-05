@@ -8,10 +8,11 @@ import axios from 'axios';
 
 const proxyUrl = '149.28.91.107:10900';
 
+// add config to the API instance and set the US proxy
 export const API = axios.create({
     baseURL: 'https://search.outdoorsy.com/',
     timeout: 1000,
     headers: {
-        'X-Forwarded-For': proxyUrl
+        'X-Forwarded-For': proxyUrl 
     }
 });
